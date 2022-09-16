@@ -1,2 +1,5 @@
 # Ignore artifacts:
-/*
+/dist
+/*.md
+/*.json
+/eslintrc.js
