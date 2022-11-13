@@ -4,7 +4,7 @@
 export function combination(set: number[], k: number): number[][] {
   const cobs: number[][] = [];
 
-  function combinate(stack: number[], left: number) {
+  function combine(stack: number[], left: number) {
     if (stack.length === k) {
       cobs.push(stack.slice());
       return;
@@ -12,11 +12,11 @@ export function combination(set: number[], k: number): number[][] {
 
     for (let i = left; i < set.length; i++) {
       stack.push(set[i]);
-      combinate(stack, i + 1);
+      combine(stack, i + 1);
       stack.pop();
     }
   }
 
-  combinate([], 0);
+  combine([], 0);
   return cobs;
 }
