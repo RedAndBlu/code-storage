@@ -71,7 +71,6 @@ describe(".remove()", () => {
     table.remove("b");
     table.remove("c");
     table.remove("d");
-    console.log([...table]);
     const expected = [
       { key: "a", value: "a" },
       { key: "b", value: "b" },

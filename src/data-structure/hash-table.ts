@@ -68,12 +68,8 @@ export class HashTable<T> {
   private _getItemIdx(key: string): number | undefined {
     const pHash = probeHash(key, this.capacity);
 
-    for (
-      let i = pHash(), item = this.buff[i];
-      item || item === null;
-      i = pHash(), item = this.buff[i]
-    ) {
-      if (item?.key === key) {
+    for (let i = pHash(); this.buff[i] || this.buff[i] === null; i = pHash()) {
+      if (this.buff[i]?.key === key) {
         return i;
       }
     }

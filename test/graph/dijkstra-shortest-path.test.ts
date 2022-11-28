@@ -1,0 +1,22 @@
+import { Graph } from "../../src/graph/graph-adjacency-list";
+import { dijkstra } from "../../src/graph/dijkstra-shortest-path";
+
+describe("dijkstra", () => {
+  const g = new Graph(false, 5)
+    .addEdge({ from: 0, to: 1, cost: 5 })
+    .addEdge({ from: 1, to: 2, cost: 3 })
+    .addEdge({ from: 1, to: 3, cost: 5 })
+    .addEdge({ from: 2, to: 4, cost: 2 })
+    .addEdge({ from: 3, to: 4, cost: 4 })
+    .addEdge({ from: 0, to: 4, cost: 2 })
+    .addEdge({ from: 1, to: 4, cost: 6 });
+  const rst = dijkstra(g, 0);
+
+  test("should return the min distance path to any vertex", () => {
+    expect(rst.distTo).toEqual([0, 5, 4, 6, 2]);
+  });
+
+  test("should return the previous node traveled on way to the shortest path", () => {
+    expect(rst.vertexTo).toEqual([null, 0, 4, 4, 0]);
+  });
+});
