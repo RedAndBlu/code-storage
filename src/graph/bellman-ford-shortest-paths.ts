@@ -7,6 +7,7 @@ interface Paths {
   vertexTo: (Vertex | null)[];
 }
 
+// https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 export function shortestPath(g: Graph, s: Vertex = 0): Paths {
   const rst: Paths = {
     source: s,

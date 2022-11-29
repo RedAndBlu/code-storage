@@ -1,5 +1,6 @@
 import { Graph, Vertex } from "./graph-adjacency-list";
 
+// https://en.wikipedia.org/wiki/Cycle_(graph_theory)
 export function hasCycle(g: Graph): boolean {
   if (g.isDirected) {
     return directedHasCycle(g);

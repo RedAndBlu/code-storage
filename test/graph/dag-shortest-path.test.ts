@@ -2,7 +2,7 @@ import { Graph } from "../../src/graph/graph-adjacency-list";
 import { dagShortestPaths } from "../../src/graph/dag-shortest-path";
 
 describe("dagShortestPaths", () => {
-  const g = new Graph(true, 5)
+  const g = new Graph(true)
     .addEdge({ from: 0, to: 1, cost: 5 })
     .addEdge({ from: 1, to: 2, cost: 6 })
     .addEdge({ from: 1, to: 3, cost: 1 })

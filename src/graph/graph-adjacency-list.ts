@@ -14,11 +14,10 @@ export interface Edge {
 
 export class Graph {
   #directed: boolean;
-  #adjacent: Set<Edge>[]; // you should use a linked list instead
+  #adjacent: Set<Edge>[] = []; // you should use a linked list instead
 
-  constructor(directed: boolean, vertices: number) {
+  constructor(directed: boolean) {
     this.#directed = directed;
-    this.#adjacent = Array.from({ length: vertices }, () => new Set<Edge>());
   }
 
   get isDirected(): boolean {
@@ -30,14 +29,17 @@ export class Graph {
   }
 
   addEdge(e: Edge): Graph {
-    if (this.vertices > e.from && this.vertices > e.to) {
-      this.#adjacent[e.from].add(e);
+    if (!this.#adjacent[e.from]) {
+      this.#adjacent[e.from] = new Set<Edge>();
+    }
+    if (!this.#adjacent[e.to]) {
+      this.#adjacent[e.to] = new Set<Edge>();
+    }
 
-      if (!this.#directed) {
-        this.#adjacent[e.to].add({ from: e.to, to: e.from, cost: e.cost });
-      }
-    } else {
-      throw new Error(`there is no such vertex ${e.from} or ${e.to}`);
+    this.#adjacent[e.from].add(e);
+
+    if (!this.#directed) {
+      this.#adjacent[e.to].add({ from: e.to, to: e.from, cost: e.cost });
     }
 
     return this;

@@ -3,7 +3,7 @@ import { hasCycle } from "../../src/graph/has-cycle";
 
 describe("hasCycle()", () => {
   test("directed acyclic graph should return false", () => {
-    const g = new Graph(true, 4)
+    const g = new Graph(true)
       .addEdge({ from: 0, to: 1, cost: 1 })
       .addEdge({ from: 1, to: 3, cost: 1 })
       .addEdge({ from: 0, to: 2, cost: 1 })
@@ -12,7 +12,7 @@ describe("hasCycle()", () => {
   });
 
   test("directed cyclic graph should return true", () => {
-    const g = new Graph(true, 4)
+    const g = new Graph(true)
       .addEdge({ from: 0, to: 1, cost: 1 })
       .addEdge({ from: 1, to: 2, cost: 1 })
       .addEdge({ from: 2, to: 3, cost: 1 })
@@ -21,7 +21,7 @@ describe("hasCycle()", () => {
   });
 
   test("directed cyclic with multiple edges graph should return true", () => {
-    const g = new Graph(true, 6)
+    const g = new Graph(true)
       .addEdge({ from: 0, to: 1, cost: 1 })
       .addEdge({ from: 1, to: 2, cost: 1 })
       .addEdge({ from: 2, to: 3, cost: 1 })
@@ -32,7 +32,7 @@ describe("hasCycle()", () => {
   });
 
   test("undirected acyclic graph should return false", () => {
-    const g = new Graph(false, 4)
+    const g = new Graph(false)
       .addEdge({ from: 0, to: 1, cost: 1 })
       .addEdge({ from: 1, to: 2, cost: 1 })
       .addEdge({ from: 2, to: 3, cost: 1 });
@@ -40,7 +40,7 @@ describe("hasCycle()", () => {
   });
 
   test("undirected cyclic graph should return true", () => {
-    const g = new Graph(false, 4)
+    const g = new Graph(false)
       .addEdge({ from: 0, to: 1, cost: 1 })
       .addEdge({ from: 1, to: 2, cost: 1 })
       .addEdge({ from: 2, to: 3, cost: 1 })

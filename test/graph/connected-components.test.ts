@@ -2,7 +2,7 @@ import { Graph } from "../../src/graph/graph-adjacency-list";
 import { find } from "../../src/graph/connected-components";
 
 describe("connected components", () => {
-  const g = new Graph(false, 8)
+  const g = new Graph(false)
     .addEdge({ from: 0, to: 1, cost: 5 })
     .addEdge({ from: 1, to: 2, cost: 3 })
     .addEdge({ from: 1, to: 3, cost: 5 })
