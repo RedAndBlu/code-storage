@@ -53,3 +53,23 @@ export class Graph {
     return this.#adjacent[v];
   }
 }
+
+export function matrixToGraph(m: number[][], directed = true): Graph {
+  const g = new Graph(directed);
+
+  for (let row = 0; row < m.length; row++) {
+    for (let col = 0; col < m[row].length; col++) {
+      if (m[row][col]) {
+        g.addEdge({ from: row, to: col, cost: m[row][col] });
+      }
+    }
+  }
+
+  return g;
+}
+
+export function edgesToGraph(egs: Edge[], directed = true): Graph {
+  const g = new Graph(directed);
+  egs.forEach((e) => g.addEdge(e));
+  return g;
+}

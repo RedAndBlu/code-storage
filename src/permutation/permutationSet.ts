@@ -10,7 +10,6 @@ export function permutation(set: number[]): number[][] {
 
     for (let i = l; i < set.length; i++) {
       swap(set, l, i);
-
       perm(set, l + 1);
       swap(set, l, i);
     }

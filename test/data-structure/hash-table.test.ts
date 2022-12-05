@@ -35,6 +35,12 @@ describe(".add()", () => {
     expect([...table]).toEqual(expect.arrayContaining(expected));
     expect(table["capacity"]).toBe(14);
   });
+
+  test("should override elements", () => {
+    table.add("a", "a").add("a", "b");
+    expect(table.size).toBe(1);
+    expect(table.get("a")).toBe("b");
+  });
 });
 
 describe(".get()", () => {
@@ -80,5 +86,16 @@ describe(".remove()", () => {
     expect(table["capacity"]).toBe(7);
     expect(table.size).toBe(3);
     expect([...table]).toEqual(expect.not.arrayContaining(expected));
+  });
+});
+
+describe("combining operations", () => {
+  test("empty spot after deletion should available for adding new elements", () => {
+    table.add("a", "a").add("b", "b");
+    const idx = table["_getItemIdx"]("b");
+    table.remove("b");
+    table.add("b", "x");
+    expect(table.size).toBe(2);
+    expect(table["buff"][idx!]?.value).toBe("x");
   });
 });

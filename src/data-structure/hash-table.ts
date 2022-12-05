@@ -41,16 +41,21 @@ export class HashTable<T> {
   add(key: string, value: T): HashTable<T> {
     const pHash = probeHash(key, this.capacity);
     let i = pHash();
+    let deletedIdx: number | undefined;
 
-    for (let item = this.buff[i]; item; i = pHash()) {
-      if (item.key === key) {
-        this.buff[i] = { key, value };
-        return this;
+    for (; this.buff[i] !== undefined; i = pHash()) {
+      if (this.buff[i]) {
+        if (this.buff[i]!.key === key) {
+          this.buff[i] = { key, value };
+          return this;
+        }
+      } else if (deletedIdx === undefined) {
+        deletedIdx = i;
       }
     }
 
     this._size++;
-    this.buff[i] = { key, value };
+    this.buff[deletedIdx === undefined ? i : deletedIdx] = { key, value };
     this.growBuff();
     return this;
   }
@@ -68,7 +73,8 @@ export class HashTable<T> {
   private _getItemIdx(key: string): number | undefined {
     const pHash = probeHash(key, this.capacity);
 
-    for (let i = pHash(); this.buff[i] || this.buff[i] === null; i = pHash()) {
+    // stop only when you find a empty slot (undefined)
+    for (let i = pHash(); this.buff[i] !== undefined; i = pHash()) {
       if (this.buff[i]?.key === key) {
         return i;
       }
