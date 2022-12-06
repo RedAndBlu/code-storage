@@ -73,3 +73,17 @@ export function edgesToGraph(egs: Edge[], directed = true): Graph {
   egs.forEach((e) => g.addEdge(e));
   return g;
 }
+
+export function matrixToEdges(m: number[][]): Edge[] {
+  const edges: Edge[] = [];
+
+  for (let from = 0; from < m.length; from++) {
+    for (let to = 0; to < m.length; to++) {
+      if (m[from][to] !== 0) {
+        edges.push({ from, to, cost: m[from][to] });
+      }
+    }
+  }
+
+  return edges;
+}
