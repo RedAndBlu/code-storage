@@ -27,6 +27,5 @@ export function tspNearestNeighbor(matrix: number[][], start: Vertex) {
     at = nearestNeighbor(at);
   }
 
-  tour.push(tour[0]);
   return tour;
 }

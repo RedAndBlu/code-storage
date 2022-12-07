@@ -20,19 +20,3 @@ export function knapsack(items: Item[], weight: number): Item[] {
 
   return selected;
 }
-
-function test(): void {
-  const set: Item[] = [
-    { value: 2, weight: 1 },
-    { value: 2, weight: 1 },
-    { value: 3, weight: 2 },
-    { value: 4, weight: 3 },
-    { value: 7, weight: 4 },
-    { value: 7, weight: 5 },
-  ];
-
-  // return [{v: 2, w: 1}, {v: 2, w: 1}, {v: 7, w: 4}]
-  console.log(knapsack(set, 6));
-}
-
-test();

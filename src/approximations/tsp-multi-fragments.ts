@@ -1,5 +1,5 @@
 import { DisjointSet } from "../data-structure/disjoint-set";
-import { matrixToEdges } from "../graph/graph-adjacency-list";
+import { matrixToEdges, Vertex } from "../graph/graph-adjacency-list";
 
 class Segments {
   private union: DisjointSet;
@@ -60,8 +60,8 @@ class Segments {
 }
 
 // reference https://en.wikipedia.org/wiki/Travelling_salesman_problem
-// this approximate the solution to the travelling salesman problem
-export function tpsMultiFragment(matrix: number[][]): number[] {
+// this approximate the solution to the traveling salesman problem
+export function tpsMultiFragment(matrix: number[][]): Vertex[] {
   const edges = matrixToEdges(matrix);
   const segments = new Segments(matrix.length);
   edges.sort((e1, e2) => e1.cost - e2.cost); // ascending
@@ -71,6 +71,5 @@ export function tpsMultiFragment(matrix: number[][]): number[] {
     segments.connect(e.from, e.to);
   }
 
-  const seg = segments.getSegments()[0];
-  return [...seg, seg[0]];
+  return [...segments.getSegments()[0]];
 }

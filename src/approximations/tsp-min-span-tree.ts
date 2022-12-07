@@ -34,6 +34,5 @@ export function tspMinSpanTree(matrix: number[][], start: Vertex): Vertex[] {
   }
 
   traverse(start);
-  tour.push(tour[0]);
   return tour;
 }

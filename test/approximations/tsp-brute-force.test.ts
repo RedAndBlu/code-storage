@@ -13,12 +13,8 @@ describe("tspBruteForce", () => {
   ];
   const rst = tspBruteForce(sample, 0)!;
 
-  test("the tail city should be equal to the head city of the tour", () => {
-    expect(rst[0]).toBe(rst[rst.length - 1]);
-  });
-
   test("should be able to traverse all vertex once", () => {
-    expect(rst.length).toBe(sample.length + 1);
+    expect(rst.length).toBe(sample.length);
     expect(rst).toEqual(expect.arrayContaining([0, 1, 2, 3, 4, 5]));
   });
 

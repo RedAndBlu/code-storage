@@ -8,7 +8,7 @@ export function isPrime(n: number): boolean {
     return false;
   }
 
-  for (let i = 5; i * i <= n; i++) {
+  for (let i = 5; i * i <= n; i += 2) {
     if (n % i == 0) {
       return false;
     }

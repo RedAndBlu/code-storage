@@ -1,6 +1,8 @@
 import { Vertex } from "../graph/graph-adjacency-list";
 
-// get the length of the tour from the tour[iStart] to tour[iEnd]
+// get the length of the tour from the tour[iStart] to tour[iEnd],
+// when iStart and iEnd are longer or equal to the entire tour get the entire
+// tour length (cycle from the start to the start again)
 export function tourLength(
   tour: Vertex[],
   matrix: number[][],
@@ -9,13 +11,17 @@ export function tourLength(
 ): number {
   const getIdx = (i: number) => ((i % tour.length) + tour.length) % tour.length;
   let len = 0;
-  iStart = getIdx(iStart);
-  iEnd = getIdx(iEnd);
+  let i = getIdx(iStart);
+  let j = getIdx(iEnd);
 
-  while (iStart !== iEnd) {
-    const next = getIdx(iStart + 1);
-    len += matrix[tour[iStart]][tour[next]];
-    iStart = next;
+  while (i !== j) {
+    const next = getIdx(i + 1);
+    len += matrix[tour[i]][tour[next]];
+    i = next;
+  }
+
+  if (iEnd - iStart + 1 >= tour.length) {
+    return len + matrix[tour.length - 1][0];
   }
 
   return len;

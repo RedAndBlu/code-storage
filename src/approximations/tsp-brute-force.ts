@@ -14,7 +14,7 @@ export function tspBruteForce(matrix: number[][], start: Vertex) {
   );
 
   for (const p of prs) {
-    const tour = [start, ...p, start];
+    const tour = [start, ...p];
     const len = tourLength(tour, matrix, 0, matrix.length - 1);
 
     if (!tour || len < bestLen) {
