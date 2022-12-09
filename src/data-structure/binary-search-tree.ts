@@ -89,9 +89,13 @@ export class BinarySearchTree<T> {
   }
 
   private _floor(n: Node<T> | undefined, key: string): Node<T> | undefined {
+    // ceil works similarly
     if (!n) {
       return;
-    } else if (key < n.key) {
+    }
+    // for predecesor (the closest value to k but smaller than k)
+    // if (key <= n.key) return this._floor(n.left, key);
+    else if (key < n.key) {
       return this._floor(n.left, key);
     } else if (key === n.key) {
       return n;
