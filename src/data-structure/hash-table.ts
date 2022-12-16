@@ -35,7 +35,10 @@ export class HashTable<T> {
 
   get(key: string): T | undefined {
     const i = this._getItemIdx(key);
-    return i ? this.buff[i]!.value : undefined;
+
+    if (i !== undefined) {
+      return this.buff[i]!.value;
+    }
   }
 
   add(key: string, value: T): HashTable<T> {

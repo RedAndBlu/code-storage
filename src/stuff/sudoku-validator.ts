@@ -22,7 +22,7 @@ function validCol(board: number[][], col: number) {
 }
 
 function validRows(board: number[][]) {
-  return board.every((_, row) => validCol(board, row));
+  return board.every((_, row) => validRow(board, row));
 }
 
 function validRow(board: number[][], row: number) {
